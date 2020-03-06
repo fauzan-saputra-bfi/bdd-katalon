@@ -48,21 +48,26 @@ class LoginSteps {
 
 	@Given("User is on login page")
 	def User_is_on_login_page() {
-		println ("user on home page")
+		WebUI.openBrowser('')
+		WebUI.navigateToUrl('http://demo.guru99.com/v4/')
 	}
 
 	@When("User enters (.*) and (.*)")
 	def User_enters_username_and_password(String username, String password) {
-		println ("user enters username and password")
+		WebUI.setText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_UserID_uid'), 'mngr246833')
+		WebUI.setEncryptedText(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_password'), 'pg73W4GCiH8=')
+		WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Home Page/input_Password_btnLogin'))
 	}
 
 	@Then("User should be on homepage")
 	def User_should_be_on_homepage() {
-		println ("user on homepage")
+		WebUI.verifyMatch(DriverFactory.getWebDriver().getTitle(), 'Guru99 Bank Manager HomePage', false)
 	}
 
 	@And("User can logout")
 	def User_can_logout() {
-		println ("user logout")
+		WebUI.click(findTestObject('Object Repository/Page_Guru99 Bank Manager HomePage/a_Log out'))
+		WebUI.acceptAlert()
+		WebUI.verifyMatch(DriverFactory.getWebDriver().getTitle(), 'Guru99 Bank HomePage', false)
 	}
 }

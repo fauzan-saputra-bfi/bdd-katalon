@@ -7,6 +7,6 @@ Feature: Login
     Then User should be on homepage
     And User can logout
 
-    Examples: 
+    Examples:
       | username   | password |
       | mngr246833 | nebypAr  |
